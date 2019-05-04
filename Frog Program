@@ -1,0 +1,327 @@
+import turtle
+kiki = turtle.Turtle()
+
+#INPUT ANALYSERZ:
+#these take the input given by the user
+#and choose which sets of turtle instructions to run
+
+def alpha(answer):
+  """write a function that chooses a set of turtle instructions based 
+  the first letter of the input; i.e. for letter a-k, turtle draws a 
+  predesigned bird head, but for letter l-s, turtle draws a dog head"""
+  if answer < "t":
+    instructions = 1
+  else:
+    instructions = 0
+  return instructions
+  
+def lengthy(answer):
+  """write a function that chooses a set of turtle functions based on 
+  the length of the string given as input; i.e. strings greater than 
+  10 characters recieve a red body, while strings less than 10 recieve 
+  a yellow body"""
+  if len(answer)<5:
+    instructions = 0
+  elif len(answer)<10:
+    instructions = 1
+  else:
+    instructions = 2
+  return instructions
+
+
+#MAIN PROGRAM:
+#Get input from the user by asking seven questions
+#call functions that use that input 
+#to choose between sets of turtle instructions to run
+
+print("WELCOME to FROG-O-MATIC 2000!")
+print("Do NOT pass go, do NOT collect $200.")
+print("Please answer these questions diligently and with the utmost sincerity to meet your amphibian alter ego.")
+
+headinst = input("In what location do you most often eat food.")
+bodyinst = input("How do you feel about brushing your teeth?")
+arminst = input("At what time of the year do you feel most alive?")
+leginst = input("If you were a vegetable what would you be?")
+feetinst = input("what do you use your non-dominant hand for the most?")
+pzazzinst = input("Give name to a noise you make that is not a word.")
+namegenerator = input("Who are you?")
+
+
+#determine the line value and color
+def colorandwidth(t, inst):
+  if lengthy(inst) == 1:
+    t.pencolor("YellowGreen")
+    t.fillcolor("YellowGreen")
+    t.width(12)
+  elif lengthy(pzazzinst) == 0:
+    t.pencolor("CornflowerBlue")
+    t.fillcolor("CornflowerBlue")
+    t.width(5)
+  elif lengthy(pzazzinst) == 2:
+    t.pencolor("Tomato") 
+    t.fillcolor("Tomato")
+    t.width(8)
+  
+
+colorandwidth(kiki, pzazzinst)
+
+#these are the different head designs
+squareheadinstructions= [['F',20],['L',90],['F',40],['L',90],['F',40],['L',90],['F',40],['L',90],['F',20],['R',90]]
+triangularheadinstructions = [['F',20],['L',120],['F',40],['L',120],['F',40],['L',120],['F',20],['R',90]]
+
+#this part determines the dimensions of the body in basic body instructions
+if lengthy(bodyinst) == 0:
+  n= 5
+  w = 60
+  l = 30
+if lengthy(bodyinst) == 1:
+  n= 20
+  w=30
+  l=40
+if lengthy(bodyinst) == 2:
+  n=10
+  w=20
+  l=90
+basicbodyinstructions = [['F', n],['L',90],['F',w/2],['R',90],['F',l],['R',90],['F',w],['R',90],['F',l],['R',90],['F',w/2]]
+bigbellyinstructions = [['F', n],['L',90],['F',w/2],['R',90],['F',l/2],['L',90],['F',10],['R',90],['F',l/2+15],['R',90],['F',w+20],['R',90],['F',l/2+15],['R',90],['F',10],['L',90],['F',l/2],['R',90],['F',w/2]]
+
+#now for some arms:
+
+straightarminstructionspart1=[['F',80],['L',45],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20]]
+straightarminstructionspart2=[['R',180],['F',80],['L',45],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20]]
+wigglyarminstructionspart1= [['F',20],['L',45],['F',20],['R',45],['F',20],['L',45],['F',20],['L',45],['F',20],['R',45],['F',7],['B',7],['R',20],['F',7],['B',7],['R',20],['F',7],['B',7],['R',20]]
+wigglyarminstructionspart2=[['R',180],['F',20],['L',45],['F',20],['R',45],['F',20],['L',45],['F',20],['L',45],['F',20],['R',45],['F',7],['B',7],['R',20],['F',7],['B',7],['R',20],['F',7],['B',7],['R',20]]
+
+runninglegsinstructionspart1=[['L',90],['F',15],['R',30],['F',60],['R',60],['F',40],['L',60],['F',20],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20]]
+runninglegsinstructionspart2=[['R',90],['F',15],['L',60],['F',60],['R',60],['F',40],['L',60],['F',20],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20],['F',20],['B',20],['R',20]]
+longlegsinstructionspart1=[['L',90],['F',10],['R',90],['F',70],['L',90],['F',7],['L',90],['F',7],['L',90],['F',7],['L',90],['F',50],['L',90],['F',30],['L',90],['F',4],['L',90],['F',4],['L',90],['F',4]]
+longlegsinstructionspart2=[['R',90],['F',10],['L',90],['F',70],['R',90],['F',7],['R',90],['F',7],['R',90],['F',7],['R',90],['F',50],['R',90],['F',30],['R',90],['F',4],['R',90],['F',4],['R',90],['F',4]]
+zenlegsinstructionspart1=[['L',90],['F',10],['R',45],['F',40],['R',90],['F',30],['L',60],['F',10],['L',90],['F',3],['L',90],['F',3],['L',90],['F',3]]
+zenlegsinstructionspart2=[['R',90],['F',10],['L',45],['F',40],['L',90],['F',30],['R',60],['F',10],['R',90],['F',3],['R',90],['F',3],['R',90],['F',3]]
+
+eyeinstructions=[['F',6],['L',90],['F',8],['L',90],['F',6],['L',90],['F',8]]
+#this part defines the functions that will actually move the turtles
+
+def moveturtle(t,commandlist):
+  for i in commandlist:
+    executecommand(t,i)
+    
+def executecommand(t,command):
+  movement = command[0]
+  amount = command[1]
+  if movement == 'F':
+    t.forward(amount)
+  if movement == 'R':
+    t.right(amount)
+  if movement == 'L':
+    t.left(amount)
+  if movement == 'B':
+    t.backward(amount)
+      
+      
+      
+#this part actually starts drawing with turtles!!
+# get into position
+
+kiki.penup()
+kiki.left(90)
+kiki.forward(40)
+kiki.right(90)
+kiki.pendown()
+face = kiki.pos()
+facedirection = kiki.heading()
+
+#draw the head
+
+if alpha(headinst)== 1:
+  position = kiki.pos()
+  kiki.fill(True)
+  moveturtle(kiki,squareheadinstructions)
+  kiki.setpos(position)
+  kiki.fill(False)
+if alpha(headinst)== 0:
+  position = kiki.pos()
+  kiki.fill(True)
+  moveturtle(kiki,triangularheadinstructions)
+  kiki.setpos(position)
+  kiki.fill(False)
+  
+#draw the body
+
+kiki.fill(True)
+if lengthy(bodyinst) == 1:
+  moveturtle(kiki,bigbellyinstructions)
+else:
+  moveturtle(kiki,basicbodyinstructions)
+kiki.fill(False)
+
+#draw the arms
+
+if alpha(arminst) == 1:
+  position = kiki.pos()
+  direction = kiki.heading()
+  moveturtle(kiki,wigglyarminstructionspart1)
+  kiki.penup()
+  kiki.setpos(position)
+  kiki.setheading(direction)
+  kiki.pendown()
+  moveturtle(kiki,wigglyarminstructionspart2)
+  
+if alpha(arminst) == 0:
+  position = kiki.pos()
+  direction = kiki.heading()
+  moveturtle(kiki,straightarminstructionspart1)
+  kiki.setpos(position)
+  kiki.setheading(direction)
+  moveturtle(kiki,straightarminstructionspart2)
+
+# get kiki in position to start drawing the legs
+kiki.penup()
+kiki.setpos(position)
+kiki.setheading(direction)
+kiki.penup()
+kiki.right(90)
+kiki.forward(n+l)
+kiki.pendown()
+  
+#draw the legs
+
+if lengthy(leginst) == 0:
+  position = kiki.pos()
+  direction = kiki.heading()
+  moveturtle(kiki,runninglegsinstructionspart1)
+  kiki.penup()
+  kiki.setpos(position)
+  kiki.setheading(direction)
+  kiki.pendown()
+  moveturtle(kiki,runninglegsinstructionspart2)
+if lengthy(leginst) == 1:
+  position = kiki.pos()
+  direction = kiki.heading()
+  moveturtle(kiki,longlegsinstructionspart1)
+  kiki.penup()
+  kiki.setpos(position)
+  kiki.setheading(direction)
+  kiki.pendown()
+  moveturtle(kiki,longlegsinstructionspart2)
+if lengthy(leginst) == 2:
+  position = kiki.pos()
+  direction = kiki.heading()
+  moveturtle(kiki,zenlegsinstructionspart1)
+  kiki.penup()
+  kiki.setpos(position)
+  kiki.setheading(direction)
+  kiki.pendown()
+  moveturtle(kiki,zenlegsinstructionspart2)
+
+#draw the eyes  
+kiki.penup()
+kiki.setpos(face)
+kiki.pencolor("white")
+kiki.width(5)
+kiki.fillcolor("black")
+kiki.setheading(facedirection)
+kiki.left(90)
+kiki.forward(15)
+kiki.right(90)
+kiki.forward(4)
+kiki.pendown()
+kiki.fill(True)
+moveturtle(kiki,eyeinstructions)
+kiki.fill(False)
+kiki.penup()
+kiki.right(90)
+kiki.forward(14)
+kiki.right(180)
+kiki.pendown()
+kiki.fill(True)
+moveturtle(kiki,eyeinstructions)
+kiki.fill(False)
+kiki.penup()
+
+#draw the mouth
+kiki.forward(10)
+kiki.pencolor("pink")
+kiki.pendown()
+kiki.left(90)
+kiki.forward(18)
+
+kiki.right(90)
+kiki.forward(5)
+kiki.right(90)
+kiki.forward(3)
+kiki.right(90)
+kiki.forward(5)
+kiki.penup()
+kiki.forward(60)
+kiki.pencolor("black")
+kiki.width(2)
+kiki.right(45)
+l=[1,2,3]
+def rightloop():
+  for i in l:
+    kiki.forward(7)
+    kiki.pendown()
+    kiki.forward(3)
+    kiki.penup()
+    kiki.right(30)
+def leftloop():
+  for i in l:
+    kiki.forward(7)
+    kiki.pendown()
+    kiki.forward(3)
+    kiki.penup()
+    kiki.left(20)
+
+#draw the fly
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+leftloop()
+leftloop()
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+leftloop()
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+leftloop()
+rightloop()
+leftloop()
+rightloop()
+rightloop()
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+rightloop()
+leftloop()
+leftloop()
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+leftloop()
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+kiki.forward(3)
+kiki.pendown()
+kiki.forward(3)
+kiki.penup()
+kiki.forward(12)
+ 
+
+colordescriptorlist=[' boorish',' loopy',' fiery',' impish',' verdant',' zen']
+adjectivedescriptorlist = [' long-legged', ' knob-kneed',' know-it-all',' caffeinated',' groovy',' winsome']
+noundescriptorlist = [' whippersnapper',' whosywhatsit',' spacecowboy',' thingamagig',' scalawag',' goofball']
+
+import random
+l=random.randint(-1,6)
+m=random.randint(-1,6)
+n=random.randint(-1,6)
+
+print("---------------------------------------------")
+print("It's you, a " + colordescriptorlist[l] +','+ adjectivedescriptorlist[m] +','+ noundescriptorlist[n]+"!! Now be gone.")
